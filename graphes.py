@@ -65,7 +65,7 @@ class imgraph:
         self.term = t
         self.flow = flow(g, booltab, w01, w11, w00, wn)
             
-        def w(self, a, b):
+        def w(a, b):
             
             inf = float("infinity")
             
@@ -119,7 +119,7 @@ class imgraph:
         
         self.setflow = setflow
         
-        def isadj(self, node1, node2):
+        def isadj(node1, node2):
             if node1 == node2:
                 return False
             elif node1 == self.root and node2 == self.term or node1 == self.term and node2 == self.root:
@@ -131,7 +131,10 @@ class imgraph:
             return (abs(a1 - a2) == 1 and abs(b1 - b2) == 0) or (abs(a1 - a2) == 0 and abs(b1 - b2) == 1)
         
         self.isadj = isadj
-        
+
+a=np.matrix([[0.4,0.4,0.8,0.9,0.9],[0.2,0.3,0.4,0.56,0.57],[0.1,0.4,0.9,0.8,0.9],[0.2,0.2,0.6,0.6,0.6],[0.1,0.1,0.6,0.6,0.6]])<0.5
+g = imgraph(a,1)
+
 ## Neighbours
 
 def neighbours(graph, node):
