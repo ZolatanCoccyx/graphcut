@@ -63,7 +63,7 @@ class imgraph:
         t = [0] * nblabel
         t[0] = "term"
         self.term = t
-        self.flow = flow(g, booltab, w01, w11, w00, wn)
+        self.flow = flow(self, booltab, w01, w11, w00, wn)
             
         def w(a, b):
             
@@ -208,12 +208,31 @@ def growth(g, A):
         orphans = []
         for k in range(n-1):
             if g.flow(P[k], P[k+1]) == 0:
+                P[k+1][3] = False
                 orphans.append(P[k+1])
         
         # Adoption #
         
-        while 
+        while orphans :
+            orphan = orphans.pop()
+            neighlist = neighbour(orphan)
+            for q in neighlist:
+                if g.flow(orphan, q) != 0 and q[2] == 1:
+                    if path(g.root, q, g):
+                        orphan[3] = q
+                    else:
+                        A.append(q)
+                        q[1] = 1
+                if not orphan[3]:
+                    orphan[2] = 0
+                    for q in neighlist:
+                        if q[3] = orphan:
+                            q[3] = False
+                            orphans.append(q)
+        
+    
+                    
 
-def augmentation(P, g):
+
     
     
